@@ -101,7 +101,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/font.otf", 48)
+    font = ImageFont.truetype("etc/font.otf", 38)
     draw.text((205, 550), f"🎙 Title: {title}", (51, 215, 255), font=font)
     draw.text((205, 590), f"⏱️ Duration: {duration}", (255, 255, 255), font=font)
     draw.text((205, 630), f"👁‍🗨 Views: {views}", (255, 255, 255), font=font)
@@ -129,7 +129,7 @@ async def playlist(client, message):
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "**Now Playing** in {}".format(message.chat.title)
+    msg = "𝑵𝒐𝒘 𝑷𝒍𝒂𝒚𝒊𝒏𝒈 in {}".format(message.chat.title)
     msg += "\n- " + now_playing
     msg += "\n- Req by " + by
     temp.pop(0)
@@ -346,13 +346,13 @@ async def m_cb(b, cb):
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "**Now Playing** in {}".format(cb.message.chat.title)
+        msg = "𝑵𝒐𝒘 𝑷𝒍𝒂𝒚𝒊𝒏𝒈 in {}".format(cb.message.chat.title)
         msg += "\n- " + now_playing
         msg += "\n- Req by " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**Queue**"
+            msg += "𝑸𝒖𝒆𝒖𝒆"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
@@ -378,7 +378,7 @@ async def m_cb(b, cb):
 
             await cb.answer("Music Paused!")
     elif type_ == "cls":
-        await cb.answer("Closed menu")
+        await cb.answer("𝑪𝒍𝒐𝒔𝒆𝒅 𝒎𝒆𝒏𝒖")
         await cb.message.delete()
 
     elif type_ == "menu":
@@ -387,15 +387,15 @@ async def m_cb(b, cb):
         marr = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⏹", "leave"),
-                    InlineKeyboardButton("⏸", "puse"),
-                    InlineKeyboardButton("▶️", "resume"),
-                    InlineKeyboardButton("⏭", "skip"),
+                    InlineKeyboardButton("⏹", "𝑺𝒕𝒐𝒑"),
+                    InlineKeyboardButton("⏸", "𝑷𝒂𝒖𝒔𝒆"),
+                    InlineKeyboardButton("▶️", "𝑹𝒆𝒔𝒖𝒎𝒆"),
+                    InlineKeyboardButton("⏭", "𝑺𝒌𝒊𝒑"),
                 ],
                 [
-                    InlineKeyboardButton("Playlist 📖", "playlist"),
+                    InlineKeyboardButton("𝑷𝒍𝒂𝒚𝒍𝒊𝒔𝒕 📖", "playlist"),
                 ],
-                [InlineKeyboardButton("❌ Close", "cls")],
+                [InlineKeyboardButton("𝑿 𝑪𝒍𝒐𝒔𝒆", "cls")],
             ]
         )
         await cb.message.edit(stats, reply_markup=marr)
@@ -600,7 +600,7 @@ async def play(_, message: Message):
             toxxt = "❀͜͡𝄟 •𝑪𝒉𝒐𝒐𝒔𝒆 𝑺𝒐𝒏𝒈• ❀͜͡𝄟\n\n"
             j = 0
             useer=user_name
-            emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣",]
+            emojilist = ["【❶】","【❷】","【❸】","【❹】","【❺】",]
 
             while j < 5:
                 toxxt += f"{emojilist[j]} **🎙 Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})**\n"
@@ -612,13 +612,13 @@ async def play(_, message: Message):
             koyboard = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("1️⃣", callback_data=f'plll 0|{query}|{user_id}'),
-                        InlineKeyboardButton("2️⃣", callback_data=f'plll 1|{query}|{user_id}'),
-                        InlineKeyboardButton("3️⃣", callback_data=f'plll 2|{query}|{user_id}'),
+                        InlineKeyboardButton("【❶】", callback_data=f'plll 0|{query}|{user_id}'),
+                        InlineKeyboardButton("【❷】", callback_data=f'plll 1|{query}|{user_id}'),
+                        InlineKeyboardButton("【❸】", callback_data=f'plll 2|{query}|{user_id}'),
                     ],
                     [
-                        InlineKeyboardButton("4️⃣", callback_data=f'plll 3|{query}|{user_id}'),
-                        InlineKeyboardButton("5️⃣", callback_data=f'plll 4|{query}|{user_id}'),
+                        InlineKeyboardButton("【❹】", callback_data=f'plll 3|{query}|{user_id}'),
+                        InlineKeyboardButton("【❺】", callback_data=f'plll 4|{query}|{user_id}'),
                     ],
                     [InlineKeyboardButton(text="𝑪𝒍𝒐𝒔𝒆 𝑿", callback_data="cls")],
                 ]
@@ -644,7 +644,7 @@ async def play(_, message: Message):
 
             except Exception as e:
                 await lel.edit(
-                    "•𝑺𝒐𝒏𝒈 𝒏𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰 𝒏𝒆𝒆𝒅 𝑴𝒐𝒓𝒆 𝑫𝒆𝒕𝒂𝒊𝒍𝒔•."
+                    "•𝑺𝒐𝒏𝒈 𝒏𝒐𝒕 𝑭𝒐𝒖𝒏𝒅.𝑰 𝒏𝒆𝒆𝒅 𝑴𝒐𝒓𝒆 𝑫𝒆𝒕𝒂𝒊𝒍𝒔•."
                 )
                 print(str(e))
                 return
@@ -699,7 +699,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ ♪𝑷𝒍𝒂𝒚𝒊𝒏𝒈...♪ 𝑺𝒐𝒏𝒈 𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒆𝒅 𝑩𝒚 ♪ {} 𝒗𝒊𝒂 𝒀𝒕 𝑴𝒖𝒔𝒊𝒄♪ ".format(
+            caption="‌▷◉♡─𝑷𝒍𝒂𝒚𝒊𝒏𝒈─ 00:00♪ 𝒇𝒐𝒓 ♪ {} 𝒗𝒊𝒂 𝒀𝒕 𝑴𝒖𝒔𝒊𝒄♪ ".format(
                 message.from_user.mention()
             ),
         )
@@ -843,7 +843,7 @@ async def ytplay(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️  ♪𝑷𝒍𝒂𝒚𝒊𝒏𝒈...♪ 𝑺𝒐𝒏𝒈 𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒆𝒅 𝑩𝒚 ♪ {} 𝒗𝒊𝒂 𝒀𝒕 𝑴𝒖𝒔𝒊𝒄♪".format(
+            caption="‌▷◉♡─𝑷𝒍𝒂𝒚𝒊𝒏𝒈─ 00:00♪ 𝒇𝒐𝒓 {} 𝒗𝒊𝒂 𝒀𝒕 𝑴𝒖𝒔𝒊𝒄♪".format(
                 message.from_user.mention()
             ),
         )
@@ -914,7 +914,7 @@ async def deezer(client: Client, message_: Message):
     queryy = text[1]
     query = queryy
     res = lel
-    await res.edit(f"Searching 👀👀👀 for `{queryy}` on deezer")
+    await res.edit(f"𝑺𝒆𝒓𝒄𝒉𝒊𝒏𝒈 `{queryy}` 𝒐𝒏 𝒅𝒆𝒆𝒛𝒆𝒓")
     try:
         songs = await arq.deezer(query,1)
         if not songs.ok:
@@ -1081,7 +1081,7 @@ async def jiosaavn(client: Client, message_: Message):
             ],
             [
                 InlineKeyboardButton(
-                    text="Join Updates Channel", url=f"https://t.me/{updateschannel}"
+                    text="𝑩𝒐𝒕 𝑶𝒘𝒏𝒆𝒓", url=f"https://t.me/GulfysHalfyyyy"
                 )
             ],
             [InlineKeyboardButton(text="𝑿 𝑪𝒍𝒐𝒔𝒆", callback_data="cls")],
@@ -1227,7 +1227,7 @@ async def lol_cb(b, cb):
         await b.send_photo(chat_id,
             photo="final.png",
             reply_markup=keyboard,
-            caption=f"▶️ ♪𝑷𝒍𝒂𝒚𝒊𝒏𝒈...♪ 𝑺𝒐𝒏𝒈 𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒆𝒅 𝑩𝒚 ♪ {r_by.mention} \n** 𝑫𝒖𝒓𝒂𝒕𝒊𝒐𝒏 {duration} \n ",
+            caption=f"‌▷◉♡─𝑷𝒍𝒂𝒚𝒊𝒏𝒈─ 00:00♪ 𝒇𝒐𝒓 ♪ {r_by.mention} \n** 𝑫𝒖𝒓𝒂𝒕𝒊𝒐𝒏 {duration} \n ",
         )
         
         os.remove("final.png")
